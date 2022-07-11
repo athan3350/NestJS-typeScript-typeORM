@@ -5,6 +5,7 @@ import { AppController } from '@app/app.controller';
 import { AppService } from '@app/app.service';
 import { TypeOrmModule,TypeOrmModuleOptions } from '@nestjs/typeorm';
 import ormConfigConstant from '@app/constants/ORMConfigConstant';
+import { UserModule } from '@app/user/user.module';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import ormConfigConstant from '@app/constants/ORMConfigConstant';
     TypeOrmModule.forRootAsync({
       useFactory: () => (ormConfigConstant as TypeOrmModuleOptions),
     }),
-    TagModule,],
+    TagModule, UserModule],
   controllers: [AppController],
   providers: [AppService],
 })
