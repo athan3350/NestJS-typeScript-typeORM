@@ -1,15 +1,6 @@
-import { ConnectionOptions, DataSource } from "typeorm";
+import { DataSource, DataSourceOptions } from "typeorm";
+import ormConfigConstant from '@app/constants/ORMConfigConstant';
 
-const ormconfig = new DataSource({
-    type: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    username: 'sebastian',
-    password: 'admin',
-    database: 'sebastiandb',
-    entities: [__dirname + '/**/*.entity{.ts,.js}'],
-    synchronize: false,
-    migrations: [__dirname + '/migrations/*{.ts,.js}']
-});
+const ormconfig = new DataSource(ormConfigConstant as DataSourceOptions);
 
 export default ormconfig;

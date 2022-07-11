@@ -3,13 +3,17 @@ import { TagModule } from './tag/tag.module';
 import { Module } from '@nestjs/common';
 import { AppController } from '@app/app.controller';
 import { AppService } from '@app/app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import ormconfig from '@app/ormconfig';
+import { TypeOrmModule,TypeOrmModuleOptions } from '@nestjs/typeorm';
+import ormConfigConstant from '@app/constants/ORMConfigConstant';
+import { UserModule } from '@app/user/user.module';
 
 @Module({
   imports: [
-    AccomodationModule, TypeOrmModule.forRoot(ormconfig),
-    TagModule,],
+    AccomodationModule,
+    TypeOrmModule.forRootAsync({
+      useFactory: () => (ormConfigConstant as TypeOrmModuleOptions),
+    }),
+    TagModule, UserModule],
   controllers: [AppController],
   providers: [AppService],
 })
