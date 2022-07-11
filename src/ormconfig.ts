@@ -1,4 +1,4 @@
-import { ConnectionOptions, DataSource } from "typeorm";
+import { DataSource } from "typeorm";
 
 const ormconfig = new DataSource({
     type: 'postgres',
