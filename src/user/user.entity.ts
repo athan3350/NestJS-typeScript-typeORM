@@ -5,7 +5,7 @@ import { hash } from 'bcrypt'
 export class UserEntity {
 
     @PrimaryGeneratedColumn()
-    id:number;
+    id: number;
 
     @Column()
     username: string;
@@ -13,17 +13,17 @@ export class UserEntity {
     @Column()
     email: string;
 
-    @Column({default: ''})
+    @Column({ default: '' })
     bio: string;
 
-    @Column({default: ''})
+    @Column({ default: '' })
     image: string;
 
-    @Column({select: false})
+    @Column({ select: false })
     password: string;
 
     @BeforeInsert()
-    async hashPassword(){
+    async hashPassword() {
         this.password = await hash(this.password, 10)
     }
 

@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { sign } from 'jsonwebtoken'
 import secretConstants from '@app/constants/secretConstants'
 import { UserResponseInterface } from '@app/user/types/userResponse.interface'
-import { LoginUserDTO } from './dto/loginUser.dto';
+import { LoginUserDTO } from '@app/user/dto/loginUser.dto';
 import {compare} from 'bcrypt';
 
 @Injectable()
@@ -57,6 +57,16 @@ export class UserService {
         
         return user;
 
+    }
+
+    async findById(id: number): Promise<UserEntity> {
+
+
+        return this.userRepository.findOne({
+            where : {
+                id: id
+            }
+        })
     }
 
     generateJwt(user: UserEntity): string {

@@ -1,4 +1,3 @@
-console.log("Printing results", process.env.IS_TS_NODE);
 if (!process.env.IS_TS_NODE){
   require('module-alias/register');
 }
