@@ -8,6 +8,7 @@ import secretConstants from '@app/constants/secretConstants'
 import { UserResponseInterface } from '@app/user/types/userResponse.interface'
 import { LoginUserDTO } from '@app/user/dto/loginUser.dto';
 import {compare} from 'bcrypt';
+import { UpdateUserDTO } from '@app/user/dto/updateUser.dto';
 
 @Injectable()
 export class UserService {
@@ -15,6 +16,7 @@ export class UserService {
         @InjectRepository(UserEntity)
         private readonly userRepository: Repository<UserEntity>
     ) { }
+    
     async createUser(createUserDTO: CreateUserDTO): Promise<UserEntity> {
         const userByEmail = await this.userRepository.findOne({ where: { email: createUserDTO.email } });
         const userByUsername = await this.userRepository.findOne({ where: { username: createUserDTO.username } });
@@ -25,6 +27,19 @@ export class UserService {
         Object.assign(newUser, createUserDTO);
         return await this.userRepository.save(newUser);
     }
+
+
+    async updateUser(idUser: number, updateUserDTO: UpdateUserDTO): Promise<UserEntity> {
+
+        const user = await this.findById(idUser);
+
+        if (!user) throw new HttpException('User does not exist', HttpStatus.UNPROCESSABLE_ENTITY);
+
+        Object.assign(user, updateUserDTO);
+
+        return await this.userRepository.save(user);
+    }
+
 
     async login(LoginUserDTO : LoginUserDTO) : Promise<UserEntity> {
      
