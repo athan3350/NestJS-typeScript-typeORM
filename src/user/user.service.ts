@@ -33,8 +33,6 @@ export class UserService {
 
         const user = await this.findById(idUser);
 
-        if (!user) throw new HttpException('User does not exist', HttpStatus.UNPROCESSABLE_ENTITY);
-
         Object.assign(user, updateUserDTO);
 
         return await this.userRepository.save(user);
