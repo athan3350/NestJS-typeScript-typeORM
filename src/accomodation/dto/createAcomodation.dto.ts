@@ -1,29 +1,35 @@
+import { IsArray, IsNotEmpty, IsNumber } from "class-validator";
 import { Column, PrimaryGeneratedColumn } from "typeorm";
 
 export class CreateAccomodationDTO {
 
-    @Column()
-    name: string;
+    @IsNotEmpty()
+    readonly name: string;
 
-    @Column()
-    roomsQuantity: number;
+    @IsNotEmpty()
+    @IsNumber()
+    readonly roomsQuantity: number;
 
-    @Column()
-    roomType: string;
+    @IsNotEmpty()
+    readonly roomType: string;
 
-    @Column()
-    bedsQuantity: number;
+    @IsNotEmpty()
+    @IsNumber()
+    readonly bedsQuantity: number;
 
-    @Column()
-    bedType: string;
+    @IsNotEmpty()
+    readonly bedType: string;
 
-    @Column()
-    bathRoomsQuantity: number;
+    @IsNotEmpty()
+    @IsNumber()
+    readonly bathRoomsQuantity: number;
 
-    @Column()
-    costPerNight: number;
+    @IsNotEmpty()
+    @IsNumber()
+    readonly costPerNight: number;
 
+    @IsArray()
     @Column("text", { array: true })
-    servicesIncluded: string[];
+    readonly servicesIncluded: string[];
     
 }
