@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UsePipes, ValidationPipe, Req, UseGuards, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, UsePipes, ValidationPipe, UseGuards, Put } from '@nestjs/common';
 import { UserService } from '@app/user/user.service';
 import { CreateUserDTO } from '@app/user/dto/createUser.dto';
 import { UserResponseInterface } from '@app/user/types/userResponse.interface';
@@ -6,7 +6,7 @@ import { LoginUserDTO } from '@app/user/dto/loginUser.dto';
 import { User } from '@app/user/decorator/user.decorator';
 import { AuthGuard } from '@app/user/guards/auth.guard';
 import { UserEntity } from '@app/user/user.entity';
-import { UpdateUserDTO } from './dto/updateUser.dto';
+import { UpdateUserDTO } from '@app/user/dto/updateUser.dto';
 
 @Controller()
 export class UserController {
